@@ -58,6 +58,36 @@ Provider 需要提供：`config`、`resolveBinary`、`sessions.{list,match,pick,
 | 桌面可见 | 需重启 App | 打开着则实时；没打开需重启 |
 | 新建对话 | 自己生成 id + 写登记簿 | 交给 codex 建，再把 `source/originator` 标成 App 自建（否则 App 隐藏） |
 
+## 配置
+
+两个 provider 各用一个配置目录，字段同名：
+
+- Claude：`~/.config/ccbridge/config.json`，API key 放 `~/.config/ccbridge/api.key`（兼容旧的 `deepseek.key`）
+- Codex：`~/.config/codexbridge/config.json`，认证直接复用 `~/.codex/auth.json`（无需额外 key）
+
+```json
+{
+  "discordToken": "BOT_TOKEN",
+  "allowedUserIds": ["YOUR_DISCORD_USER_ID"],
+  "channelId": "CHANNEL_ID",
+  "projectDir": "~/claude-project",
+  "permission": "ro",
+  "baseUrl": "https://api.anthropic.com",
+  "proxyUrl": "http://127.0.0.1:7890"
+}
+```
+
+| 字段 | 说明 |
+|---|---|
+| `allowedUserIds` | **必填**，只有这些人的消息会被处理；其他人静默丢弃 |
+| `channelId` | 只响应这个频道及挂在它下面的 thread；留空则不限 |
+| `permission` | `ro` 只读 / `rw` 文件读写 / `full` 完全放开（含执行命令） |
+| `baseUrl` | Claude provider 的 API 端点，默认 Anthropic 官方；用兼容端点时改这里 |
+| `proxyUrl` | 可选，默认读 `HTTPS_PROXY` 等环境变量 |
+
+Discord bot 需要：`Message Content Intent`、`Send Messages`、`Read Message History`、
+`Create Public Threads`、`Send Messages in Threads`。
+
 ## 运行
 
 ```bash

@@ -43,7 +43,7 @@ export const PROFILES = {
 
 const DEFAULTS = {
   projectDir: join(homedir(), 'Claude'),
-  baseUrl: 'https://api.deepseek.com/anthropic',
+  baseUrl: process.env.ANTHROPIC_BASE_URL || 'https://api.anthropic.com',
   // null = 自动接登记簿里最近活跃的对话
   sessionId: null,
   // null = 运行时动态解析 Claude Desktop 包内的 claude 二进制
