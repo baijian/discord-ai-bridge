@@ -33,7 +33,7 @@ Provider 需要提供：`config`、`resolveBinary`、`sessions.{list,match,pick,
 |---|---|
 | `/help` | 列出全部命令 |
 | `/sessions`（`/sessionlist`） | 列出对话并编号，标出当前绑定 |
-| `/session <编号>` | 把**当前聊天**绑定到该对话；也接受短 id（≥4 位唯一前缀）或标题关键词 |
+| `/session <编号>` | 把**当前聊天**绑定到该对话；也接受短 id（≥4 位唯一前缀）或标题关键词（别名 `/sess`） |
 | `/new` | 解除当前聊天的绑定 |
 | `/list` | 列出全部对话（带 8 位短 id） |
 | `/status` | 看当前绑定、是否在跑 |
